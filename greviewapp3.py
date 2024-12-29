@@ -9,7 +9,7 @@ client = ApifyClient("apify_api_GbQtNrgqcGpCAAb849rssoFyGhgb0W11hN7U")
 def get_user_input():
     urls = st.text_area("Enter URLs separated by commas", key="url_input")  # Unique key
     urls = [url.strip() for url in urls.split(",")]
-    start_date = st.date_input("Pick a Date", key="date_input")  # Unique key
+    start_date = st.date_input("Start Date", key="date_input")  # Unique key
     return urls, start_date
 
 def prepare_actor_input(urls, start_date):

@@ -14,7 +14,7 @@ def get_user_input():
 
 def prepare_actor_input(urls, start_date):
     # Convert start_date to ISO format and subtract one day
-    one_day_ago = datetime.combine(start_date, datetime.min.time()) - timedelta(days=1)
+    one_day_ago = datetime.combine(start_date, datetime.min.time())
     formatted_date = one_day_ago.isoformat()
 
     run_input = {

@@ -4,7 +4,7 @@ import pandas as pd
 from datetime import datetime, timedelta
 
 # Replace with your actual API token
-client = ApifyClient("apify_api_GbQtNrgqcGpCAAb849rssoFyGhgb0W11hN7U")
+client = ApifyClient("apify_api_MwI41ydH9qjbSZzU4QcBBUNipj8gl41Uvrsw")
 
 def get_user_input():
     urls = st.text_area("Enter URLs separated by commas", key="url_input")  # Unique key

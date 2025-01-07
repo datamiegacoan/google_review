@@ -1,4 +1,4 @@
 streamlit
-apify-client
+apify-client>=1.0.0
 pandas
 openpyxl

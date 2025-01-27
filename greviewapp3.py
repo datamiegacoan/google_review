@@ -4,7 +4,7 @@ import pandas as pd
 from datetime import datetime, timedelta
 
 # Replace with your actual API token
-client = ApifyClient("")
+client = ApifyClient("apify_api_CkSfp4GJvmPhBzhoDvz2a2t3IBI00o1WVKpW")
 
 def get_user_input():
     urls = st.text_area("Enter URLs separated by commas", key="url_input")  # Unique key
@@ -30,7 +30,7 @@ def prepare_actor_input(urls, start_date):
 
 def run_and_download(urls, start_date):
     run_input = prepare_actor_input(urls, start_date)
-    run = client.actor("").call(run_input=run_input)
+    run = client.actor("Xb8osYTtOjlsgI6k9").call(run_input=run_input)
 
     dataset = client.dataset(run["defaultDatasetId"])
     data = [item for item in dataset.iterate_items()]

@@ -13,7 +13,7 @@ def get_user_input():
     return urls, start_date
 
 def prepare_actor_input(urls, start_date):
-    formatted_date = datetime.combine(start_date, datetime.min.time()).isoformat()
+    formatted_date = datetime.combine(start_date, datetime.min.time()).strftime("%Y-%m-%dT%H:%M:%SZ")
     
     return {
         "startUrls": [{"url": url} for url in urls],
@@ -36,12 +36,12 @@ def run_and_download(urls, start_date):
         with st.spinner("Running Apify actor..."):
             run = client.actor(ACTOR_ID).call(run_input=run_input)
 
-        dataset_id = run.get("defaultDatasetId")
+        dataset_id = run.default_dataset_id
 
         if not dataset_id:
             st.error("Actor tidak menghasilkan dataset.")
             st.write("Run result:")
-            st.json(run)
+            st.write(run) # Menampilkan objek langsung
             return
 
         data = list(client.dataset(dataset_id).iterate_items())

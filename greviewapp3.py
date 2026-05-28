@@ -13,8 +13,8 @@ def get_user_input():
     return urls, start_date
 
 def prepare_actor_input(urls, start_date):
-    formatted_date = datetime.combine(start_date, datetime.min.time()).isoformat()
-
+    formatted_date = datetime.combine(start_date, datetime.min.time()).strftime("%Y-%m-%dT%H:%M:%SZ")
+    
     return {
         "startUrls": [{"url": url} for url in urls],
         "maxReviews": 100,

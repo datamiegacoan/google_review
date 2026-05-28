@@ -13,6 +13,7 @@ def get_user_input():
     return urls, start_date
 
 def prepare_actor_input(urls, start_date):
+    # Format tanggal pakai Zulu Time, bukan local time.
     formatted_date = datetime.combine(start_date, datetime.min.time()).strftime("%Y-%m-%dT%H:%M:%SZ")
     
     return {
@@ -36,12 +37,13 @@ def run_and_download(urls, start_date):
         with st.spinner("Running Apify actor..."):
             run = client.actor(ACTOR_ID).call(run_input=run_input)
 
+        # Tampung properti object Pydantic, bukan pemanggilan dictionary objek Pydantic dengan get() (objek Pydantic itu class instances, jadi akses properti pakai dot, bukan key-based access.).
         dataset_id = run.default_dataset_id
 
         if not dataset_id:
             st.error("Actor tidak menghasilkan dataset.")
             st.write("Run result:")
-            st.write(run) # Menampilkan objek langsung
+            st.write(run) # Menampilkan objek langsung bila properti default_dataset_id kosong.
             return
 
         data = list(client.dataset(dataset_id).iterate_items())
